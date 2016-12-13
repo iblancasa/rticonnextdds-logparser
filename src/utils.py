@@ -42,10 +42,10 @@ Constants:
   + INSTANCE_STATES: States for an instance.
   + VIEW_STATES: View states for an instance.
 """
-from datetime import timedelta
 from calendar import timegm
+from datetime import timedelta
 from hashlib import md5
-from logger import log_warning, log_cfg
+from devices.logger import log_cfg, log_warning
 
 
 INSTANCE_STATES = ["invalid", "alive", "disposed", "", "no_writers"]
@@ -243,11 +243,9 @@ def get_participant(guid, state):
 
     # Check if this is a local participant (we don't know which because we
     # miss the instance ID from the message).
-    if 'local_address' in state and tuple(address) in state['local_address']:
-        if not state['assign_names']:
-            if state['obfuscate']:
-                address[1] = obfuscate(address[1], state)[:5]
-            return 'local ' + address[1]
+    if 'local_address' in state and tuple(address) in state['local_address'] \
+            and not state['assign_names']:
+        return 'local ' + get_port_number(address[1], state)
 
     name = None
     if state['obfuscate']:

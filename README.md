@@ -1,4 +1,4 @@
-# RTI Log Parser for Connext DDS [<img alt="Gitter" src="https://img.shields.io/badge/license-Apache-blue.svg?style=flat" align="right" />](https://www.apache.org/licenses/LICENSE-2.0.html)
+# RTI Log Parser for Connext DDS [<img alt="License Apache" src="https://img.shields.io/badge/license-Apache-blue.svg?style=flat" align="right" />](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 **RTI Log Parser** is a command-line tool that processes and enhances Connext DDS log messages making it easier to debug applications.
 
@@ -25,6 +25,8 @@ Additional features can be enabled or disabled with the following arguments:
 * `--input, -i`: log file path, by default read from the standard input.
 * `-v`: verbosity level. You can control the level adding more 'v'.
 * `--output FILE, -o FILE`: write the output into the specified file.
+* `--overwrite-output FILE, -oo FILE`: write the output into a new file.
+* `--write-original FILE`: write the original log into the specified file.
 * `--show-ip`: show the IP address instead of an assigned name.
 * `--obfuscate`: hide sensitive information like IP addresses.
 * `--salt SALT, -s SALT`: salt for obfuscation. It will be random if not set.
@@ -38,6 +40,9 @@ Additional features can be enabled or disabled with the following arguments:
 * `--no-inline`: do not show warnigns and errors in network logs.
 * `--no-stats`: do not show the network and packet statistics.
 * `--no-progress`: do not show the interative info at the bottom.
+* `--debug`: export the unmatched log messages.
+* `--version`: show the program version.
+* `--help, -h`: show the arguments help.
 
 ### Enable Connext DDS logs
 By default any application built with RTI Connext DDS will print to the standard output errors from the middleware. To take advantage of this tool we recommend to enable the higher log verbosity and redirect the output into a file. There are several ways to increase the log verbosity:
@@ -105,7 +110,7 @@ It is not necessary to compile the tool since it uses python. Optionally, the so
 There are two methods to add customer log messages in the parsed output. This allows to add custom application messages in the output of the tool.
 
 ### Log prefixes
-Any log message starting with `# Custom: ` is parsed and it will appear in the output.
+Any log message starting with `#Custom: ` is parsed and it will appear in the output.
 
 ### Adding a parser
 The tool can be extended to implement custom parsers by following these steps:

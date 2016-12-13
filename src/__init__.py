@@ -13,15 +13,8 @@
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
-"""Log parsing functions for custom logs.
+"""Package LogParser."""
 
-Functions:
-  + on_custom_log: Parse a log with a custom prefix.
-"""
-from __future__ import absolute_import
-from devices.logger import log_event
-
-
-def on_custom_log(match, state):
-    """Parse a log with a custom prefix."""
-    log_event("[App] " + match[0], state)
+__version__ = "1.2a2"
+__license__ = "Apache"
+__copyright__ = "Copyright 2016 Real-Time Innovations, Inc."
